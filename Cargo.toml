@@ -1,0 +1,11 @@
+[package]
+name = "crankshaft-plugin-core"
+version = "0.1.0"
+edition = "2024"
+authors = ["Akash Chakraborty"]
+license = "MIT OR Apache-2.0"
+description = "Shared types and contracts for the Crankshaft plugin system"
+repository = "https://github.com/akashchakrabortymsc-cmd/crankshaft-plugin-core"
+
+[dependencies]
+thiserror = "2"
