@@ -3,9 +3,10 @@
 use std::collections::HashMap;
 use std::time::Duration;
 
-// ─── JobId ───────────────────────────────────────────────
+// ─── JobId ─────
 
-/// A unique identifier for a submitted job.
+/// Created A unique identifier for a submitted job.
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct JobId(String);
 
@@ -22,7 +23,7 @@ impl std::fmt::Display for JobId {
     }
 }
 
-// ─── JobStatus ───────────────────────────────────────────
+// ─── JobStatus ─────
 
 /// The current state of a job.
 #[derive(Debug, Clone, PartialEq)]
@@ -39,7 +40,7 @@ pub enum JobStatus {
     Cancelled,
 }
 
-// ─── Job ─────────────────────────────────────────────────
+// ─── Job ───
 
 /// The unit of work sent to a plugin for execution.
 #[derive(Debug, Clone)]
@@ -66,7 +67,7 @@ impl Job {
     }
 }
 
-// ─── PluginError ─────────────────────────────────────────
+// ─── PluginError ──────
 
 /// All the ways a plugin interaction can fail.
 #[derive(Debug, thiserror::Error)]
@@ -95,7 +96,7 @@ pub enum PluginError {
 /// Shorthand Result type for plugin operations.
 pub type PluginResult<T> = Result<T, PluginError>;
 
-// ─── PluginBackend trait ──────────────────────────────────
+// ─── PluginBackend trait ───────
 
 /// The contract every plugin must implement.
 ///
@@ -112,7 +113,7 @@ pub trait PluginBackend {
     fn cancel(&self, id: &JobId) -> PluginResult<()>;
 }
 
-// ─── Tests ───────────────────────────────────────────────
+// ─── Tests ────────────────
 
 #[cfg(test)]
 mod tests {
