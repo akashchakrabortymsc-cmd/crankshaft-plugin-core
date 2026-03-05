@@ -5,7 +5,7 @@ use std::time::Duration;
 
 // ─── JobId ─────
 
-/// Created A unique identifier for a submitted job.
+/// A unique identifier for a submitted job.
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct JobId(String);
