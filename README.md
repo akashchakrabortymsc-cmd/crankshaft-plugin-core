@@ -3,9 +3,7 @@
 Shared types and contracts for the Crankshaft plugin system.
 
 This crate is the foundation that every other plugin crate depends on.
-It contains no networking, no process management, and no HPC logic —
-just the types and interfaces that define how the engine and plugins
-talk to each other.
+
 
 ---
 
@@ -49,14 +47,6 @@ let job = Job::new(
 );
 ```
 
-Fields:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `id` | `JobId` | Unique identifier |
-| `command` | `String` | Shell command to run |
-| `environment` | `HashMap<String, String>` | Environment variables |
-| `timeout` | `Option<Duration>` | Optional execution timeout |
 
 ---
 
@@ -90,78 +80,10 @@ pub enum PluginError {
 }
 ```
 
----
-
-### `PluginResult<T>`
-
-Shorthand used throughout the plugin system.
-
-```rust
-pub type PluginResult = Result;
-```
-
----
-
-## How to use this crate
-
-Add it to your `Cargo.toml`:
-
-```toml
-[dependencies]
-crankshaft-plugin-core = { path = "../crankshaft-plugin-core" }
-```
-
-Implement the trait:
-
-```rust
-use crankshaft_plugin_core::{
-    Job, JobId, JobStatus,
-    PluginBackend, PluginResult,
-};
-
-pub struct MyBackend;
-
-impl PluginBackend for MyBackend {
-    fn submit(&self, job: Job) -> PluginResult {
-        // your logic here
-        Ok(job.id)
-    }
-
-    fn status(&self, id: &JobId) -> PluginResult {
-        // your logic here
-        Ok(JobStatus::Running)
-    }
-
-    fn cancel(&self, id: &JobId) -> PluginResult {
-        // your logic here
-        Ok(())
-    }
-}
-```
-
----
-
-## Development
-
-```bash
-# build
-cargo build
-
-# run tests
-cargo test
-
-# check for issues
-cargo clippy
-
-# open documentation
-cargo doc --open
-```
-
----
 
 ## License
 
 Licensed under either of:
 
 - Apache License, Version 2.0 ([LICENSE-APACHE](../LICENSE-APACHE))
-- MIT License ([LICENSE-MIT](../LICENSE-MIT))
+
